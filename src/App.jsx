@@ -9,6 +9,7 @@ import FruitList from './components/fruit-list/fruit-list';
 import PeopleTable from './components/people-table/people-table';
 import Multi3 from './components/multi-3/multi-3';
 import TemperatureConvertForm from './components/temperature-convert-form/temperature-convert-form';
+import Counter from './containers/counter/counter';
 
 function App() {
 
@@ -32,9 +33,12 @@ function App() {
       {/* <h2>Demo 04 - Le state</h2>
       <Multi3 /> */}
 
-      <h2>Demo 05 - Les formulaires</h2>
+      {/* <h2>Demo 05 - Les formulaires</h2>
       <TemperatureConvertForm />
-      <TemperatureConvertForm />
+      <TemperatureConvertForm /> */}
+
+      <h2>Demo 06 - La communication</h2>
+      <Counter />
     </div>
   )
 }
