@@ -10,7 +10,8 @@ import PeopleTable from './components/people-table/people-table';
 import Multi3 from './components/multi-3/multi-3';
 import TemperatureConvertForm from './components/temperature-convert-form/temperature-convert-form';
 import Counter from './containers/counter/counter';
-import CounterEffect from './containers/counter-effect/counter-effect';
+import CounterEffect from './components/counter-effect/counter-effect';
+import DemoEffect from './containers/demo-effect/demo-effect';
 
 function App() {
 
@@ -42,7 +43,7 @@ function App() {
       <Counter /> */}
 
 			<h2>Demo 07 - Cycle de vie</h2>
-      <CounterEffect />
+      <DemoEffect />
     </div>
   )
 }
