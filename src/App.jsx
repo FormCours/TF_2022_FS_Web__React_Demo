@@ -10,6 +10,9 @@ import PeopleTable from './components/people-table/people-table';
 import Multi3 from './components/multi-3/multi-3';
 import TemperatureConvertForm from './components/temperature-convert-form/temperature-convert-form';
 import Counter from './containers/counter/counter';
+import CounterEffect from './components/counter-effect/counter-effect';
+import DemoEffect from './containers/demo-effect/demo-effect';
+import DemoAjax from './containers/demo-ajax/demo-ajax';
 
 function App() {
 
@@ -37,8 +40,14 @@ function App() {
       <TemperatureConvertForm />
       <TemperatureConvertForm /> */}
 
-      <h2>Demo 06 - La communication</h2>
-      <Counter />
+      {/* <h2>Demo 06 - La communication</h2>
+      <Counter /> */}
+
+			{/* <h2>Demo 07 - Cycle de vie</h2>
+      <DemoEffect /> */}
+
+			<h2>Demo 08 - Demo Ajax</h2>
+			<DemoAjax />
     </div>
   )
 }
