@@ -12,6 +12,7 @@ import TemperatureConvertForm from './components/temperature-convert-form/temper
 import Counter from './containers/counter/counter';
 import CounterEffect from './components/counter-effect/counter-effect';
 import DemoEffect from './containers/demo-effect/demo-effect';
+import DemoAjax from './containers/demo-ajax/demo-ajax';
 
 function App() {
 
@@ -42,8 +43,11 @@ function App() {
       {/* <h2>Demo 06 - La communication</h2>
       <Counter /> */}
 
-			<h2>Demo 07 - Cycle de vie</h2>
-      <DemoEffect />
+			{/* <h2>Demo 07 - Cycle de vie</h2>
+      <DemoEffect /> */}
+
+			<h2>Demo 08 - Demo Ajax</h2>
+			<DemoAjax />
     </div>
   )
 }
