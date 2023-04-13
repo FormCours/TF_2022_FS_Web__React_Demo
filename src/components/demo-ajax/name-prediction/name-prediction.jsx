@@ -3,42 +3,34 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { fetchNameAge, fetchNameGender } from '../../../api/name.api';
 
-const NamePrediction = ({name}) => {
-  const [isloadingAge, setLoadingAge] = useState(true);
-  const [isloadingGenre, setLoadingGenre] = useState(true);
+const NamePrediction = ({ name }) => {
+  const [isloading, setLoading] = useState(true);
   const [dataAge, setDataAge] = useState(null);
   const [dataGenre, setDataGenre] = useState(null);
-  const [onErrorAge, setErrorAge] = useState(false);
-  const [onErrorGenre, setErrorGenre] = useState(false);
+  const [onError, setError] = useState(false);
 
   useEffect(() => {
-    fetchNameAge(name)
-      .then(data => setDataAge(data))
-      .catch(() => setErrorAge(true))
-      .finally(() => setLoadingAge(false));
 
-      return () => {
-        setLoadingAge(true);
-        setErrorAge(false);
-      }
-  }, [name]);
+    Promise.all([fetchNameAge(name), fetchNameGender(name)])
+      .then(([data1, data2]) => {
+        setDataAge(data1);
+        setDataGenre(data2);
+      })
+      .catch(() => setError(true))
+      .finally(() => setLoading(false));
 
-  useEffect(() => {
-    setLoadingAge(true);
-    setErrorAge(false);
-
-    fetchNameGender(name)
-      .then(setDataGenre)
-      .catch(() => setErrorGenre(true))
-      .finally(() => setLoadingGenre(false))
+    return () => {
+      setLoading(true);
+      setError(false);
+    };
   }, [name]);
 
 
   return (
     <div>
-      {(isloadingAge || isloadingGenre) ? (
+      {(isloading) ? (
         <LoadingScreen />
-      ) : (onErrorAge || onErrorGenre) ? (
+      ) : (onError) ? (
         <ErrorScreen />
       ) : (dataAge && dataGenre) ? (
         <ReponseScreen {...dataAge} {...dataGenre} />
@@ -49,13 +41,13 @@ const NamePrediction = ({name}) => {
   );
 };
 
-const ReponseScreen = ({name, country, age, gender, genderProba}) => (
+const ReponseScreen = ({ name, country, age, gender, genderProba }) => (
   <div>
     <p>Prédiction pour le nom {name.toLocaleUpperCase()} ({country})</p>
     <p> - Age : {age} ans.</p>
     <p> - Sexe : {gender} ({genderProba} %)</p>
   </div>
-)
+);
 
 const LoadingScreen = () => (
   <p>Chargement...</p>
