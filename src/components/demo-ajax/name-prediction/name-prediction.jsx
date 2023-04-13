@@ -1,30 +1,9 @@
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { fetchNameAge, fetchNameGender } from '../../../api/name.api';
+import { useFetchNameInfo } from '../../../hooks/name-info.hook';
 
 const NamePrediction = ({ name }) => {
-  const [isloading, setLoading] = useState(true);
-  const [dataAge, setDataAge] = useState(null);
-  const [dataGenre, setDataGenre] = useState(null);
-  const [onError, setError] = useState(false);
 
-  useEffect(() => {
-
-    Promise.all([fetchNameAge(name), fetchNameGender(name)])
-      .then(([data1, data2]) => {
-        setDataAge(data1);
-        setDataGenre(data2);
-      })
-      .catch(() => setError(true))
-      .finally(() => setLoading(false));
-
-    return () => {
-      setLoading(true);
-      setError(false);
-    };
-  }, [name]);
-
+  const [isloading, onError, data] = useFetchNameInfo(name);
 
   return (
     <div>
@@ -32,8 +11,8 @@ const NamePrediction = ({ name }) => {
         <LoadingScreen />
       ) : (onError) ? (
         <ErrorScreen />
-      ) : (dataAge && dataGenre) ? (
-        <ReponseScreen {...dataAge} {...dataGenre} />
+      ) : (data) ? (
+        <ReponseScreen {...data} />
       ) : (
         <p>Aucune donnée...</p>
       )}
